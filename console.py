@@ -343,16 +343,17 @@ def convert_str_dict(string):
     for element in array_kwargs:
         key_value = element.split('=')
         key = key_value[0]
-        value = key_value[1]
 
-        if value[0] == '\"':
-            value = value.replace("_", " ")
-            converted_dict[key] = value.strip('\"')
-            replace
-        elif key in attributes_int:
-            converted_dict[key] = int(value)
-        elif key in attribute_float:
-            converted_dict[key] = float(value)
+        if (len(key_value) > 1) and key_value[1]:
+            value = key_value[1]
+
+            if value[0] == '\"':
+                value = value.replace("_", " ")
+                converted_dict[key] = value.strip('\"')  # No quita ultima "
+            elif key in attributes_int:
+                converted_dict[key] = int(value)
+            elif key in attribute_float:
+                converted_dict[key] = float(value)
 
     return (class_first_position, converted_dict)
 
