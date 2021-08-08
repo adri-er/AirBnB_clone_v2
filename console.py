@@ -116,8 +116,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ Create an object of any class"""
-        class_name = convert_str_dict(args)[0]
-        kwargs = convert_str_dict(args)[1]
+        class_name = HBNBCommand.convert_str_dict(args)[0]
+        kwargs = HBNBCommand.convert_str_dict(args)[1]
 
         if not args:
             print("** class name missing **")
@@ -238,7 +238,7 @@ class HBNBCommand(cmd.Cmd):
         print(count)
 
     def help_count(self):
-        """ """
+        """ Message to help user for ount functionality """
         print("Usage: count <class_name>")
 
     def do_update(self, args):
@@ -324,38 +324,38 @@ class HBNBCommand(cmd.Cmd):
 
         new_dict.save()  # save updates to file
 
+    @classmethod
+    def convert_str_dict(self, string):
+        """ Converts a string to a dictionary. """
+        array_kwargs = string.split()
+        class_first_position = array_kwargs[0]
+        array_kwargs = array_kwargs[1::]
+        converted_dict = {}
+        attributes_int = ['number_rooms', 'number_bathrooms',
+                          'max_guests', 'price_by_night']
+        attribute_float = ['latitude', 'longitude']
+
+        for element in array_kwargs:
+            key_value = element.split('=')
+            key = key_value[0]
+
+            if (len(key_value) > 1) and key_value[1]:
+                value = key_value[1]
+
+                if value[0] == '\"':
+                    value = value.replace("_", " ")
+                    converted_dict[key] = value.strip('\"')  # No quita ultima"
+                elif key in attributes_int:
+                    converted_dict[key] = int(value)
+                elif key in attribute_float:
+                    converted_dict[key] = float(value)
+
+        return (class_first_position, converted_dict)
+
     def help_update(self):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
-
-
-def convert_str_dict(string):
-    """ Converts a string to a dictionary. """
-    array_kwargs = string.split()
-    class_first_position = array_kwargs[0]
-    array_kwargs = array_kwargs[1::]
-    converted_dict = {}
-    attributes_int = ['number_rooms', 'number_bathrooms',
-                      'max_guests', 'price_by_night']
-    attribute_float = ['latitude', 'longitude']
-
-    for element in array_kwargs:
-        key_value = element.split('=')
-        key = key_value[0]
-
-        if (len(key_value) > 1) and key_value[1]:
-            value = key_value[1]
-
-            if value[0] == '\"':
-                value = value.replace("_", " ")
-                converted_dict[key] = value.strip('\"')  # No quita ultima "
-            elif key in attributes_int:
-                converted_dict[key] = int(value)
-            elif key in attribute_float:
-                converted_dict[key] = float(value)
-
-    return (class_first_position, converted_dict)
 
 
 if __name__ == "__main__":
