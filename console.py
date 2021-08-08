@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Console Module """
 import cmd
+from os import replace
 import sys
 from models.base_model import BaseModel
 from models.__init__ import storage
@@ -19,16 +20,16 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) ' if sys.__stdin__.isatty() else ''
 
     classes = {
-               'BaseModel': BaseModel, 'User': User, 'Place': Place,
-               'State': State, 'City': City, 'Amenity': Amenity,
-               'Review': Review
-              }
+        'BaseModel': BaseModel, 'User': User, 'Place': Place,
+        'State': State, 'City': City, 'Amenity': Amenity,
+        'Review': Review
+    }
     dot_cmds = ['all', 'count', 'show', 'destroy', 'update']
     types = {
-             'number_rooms': int, 'number_bathrooms': int,
-             'max_guest': int, 'price_by_night': int,
-             'latitude': float, 'longitude': float
-            }
+        'number_rooms': int, 'number_bathrooms': int,
+        'max_guest': int, 'price_by_night': int,
+        'latitude': float, 'longitude': float
+    }
 
     def preloop(self):
         """Prints if isatty is false"""
@@ -73,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
                 pline = pline[2].strip()  # pline is now str
                 if pline:
                     # check for *args or **kwargs
-                    if pline[0] is '{' and pline[-1] is'}'\
+                    if pline[0] is '{' and pline[-1] is '}'\
                             and type(eval(pline)) is dict:
                         _args = pline
                     else:
@@ -115,13 +116,21 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ Create an object of any class"""
+        class_name = convert_str_dict(args)[0]
+        kwargs = convert_str_dict(args)[1]
+
         if not args:
             print("** class name missing **")
             return
-        elif args not in HBNBCommand.classes:
+        elif class_name not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[args]()
+
+        new_instance = HBNBCommand.classes[class_name]()
+        for key, value in kwargs.items():
+            if hasattr(new_instance, key):
+                setattr(new_instance, key, value)
+
         storage.save()
         print(new_instance.id)
         storage.save()
@@ -319,6 +328,34 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
+
+def convert_str_dict(string):
+    """ Converts a string to a dictionary. """
+    array_kwargs = string.split()
+    class_first_position = array_kwargs[0]
+    array_kwargs = array_kwargs[1::]
+    converted_dict = {}
+    attributes_int = ['number_rooms', 'number_bathrooms',
+                      'max_guests', 'price_by_night']
+    attribute_float = ['latitude', 'longitude']
+
+    for element in array_kwargs:
+        key_value = element.split('=')
+        key = key_value[0]
+        value = key_value[1]
+
+        if value[0] == '\"':
+            value = value.replace("_", " ")
+            converted_dict[key] = value.strip('\"')
+            replace
+        elif key in attributes_int:
+            converted_dict[key] = int(value)
+        elif key in attribute_float:
+            converted_dict[key] = float(value)
+
+    return (class_first_position, converted_dict)
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
