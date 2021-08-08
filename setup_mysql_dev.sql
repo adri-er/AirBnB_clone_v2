@@ -1,0 +1,1 @@
+-- Prepares SQL server for connection
