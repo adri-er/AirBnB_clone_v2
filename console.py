@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Console Module """
+""" Console Module for interactive hbnb program. """
 import cmd
 from os import replace
 import sys
