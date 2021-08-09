@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-'''
-    module documentation
-'''
+"""
+Unistest to tste the command line console to manage the web site
+"""
 import unittest
 from models.base_model import BaseModel
 import os
@@ -12,9 +12,10 @@ from io import StringIO
 
 class TestHBNBCommand(unittest.TestCase):
     """
-    this class test HBNBCommand class and your behavior
+    this class test HBNBCommand class and its behavior
     """
     def setUp(self) -> None:
+        """Test module to test the console and its functionality"""
         return super().setUp()
 
     def out_test(self, func, arg, expect):
