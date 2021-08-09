@@ -3,9 +3,9 @@
 Module to store instances on the MySQL database
 """
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 from os import environ, getenv
-print(getenv('HBNB_MYSQL_USER'))
+
 
 class DBStorage:
     """Class"""
@@ -20,7 +20,7 @@ class DBStorage:
                                       pool_pre_ping=True)
 
         if getenv('HBNB_ENV') == 'test':
-            delete_tables = DBStorage.__session.execute('DROP TABLE IF EXISTS cities, states')  # COmplete info
+            delete_tables = self.__session.execute('DROP TABLE IF EXISTS cities, states')  # COmplete info
 
     def all(self, cls=None):
         """  """
@@ -31,9 +31,9 @@ class DBStorage:
         dictionary = {}
 
         if cls is None:
-            result = DBStorage.__session.query(State, City).all()  # Complete classes
+            result = self.__session.query(State, City).all()  # Complete classes
         else:
-            result = DBStorage.__session.query(cls).all()
+            result = self.__session.query(cls).all()
 
         for obj in result:
             dictionary[obj.__class__.__name__ + '.' + obj.id] = obj
@@ -42,24 +42,24 @@ class DBStorage:
 
     def new(self, obj):
         """  """
-        DBStorage.__session.add(obj)
+        self.__session.add(obj)
 
     def save(self):
         """  """
-        DBStorage.__session.commit()
+        self.__session.commit()
 
     def delete(self, obj=None):
         """ """
         if obj is not None:
-            DBStorage.__session.delete(obj)
+            self.__session.delete(obj)
 
     def reload(self):
         """  """
-        from models.base_model import BaseModel
+        from models.base_model import BaseModel, Base
         from models.city import City
         from models.state import State
 
-        Base.metadata.create_all(DBStorage.__engine)
-        Session = scoped_session(sessionmaker(bind=DBStorage.__engine,
+        Base.metadata.create_all(self.__engine)
+        Session = scoped_session(sessionmaker(bind=self.__engine,
                                               expire_on_commit=False))
-        DBStorage.__session = Session()
+        self.__session = Session()
