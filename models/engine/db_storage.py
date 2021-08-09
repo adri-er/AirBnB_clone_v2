@@ -20,10 +20,7 @@ class DBStorage:
                                       pool_pre_ping=True)
 
         if getenv('HBNB_ENV') == 'test':
-            Session = sessionmaker(bind=DBStorage.__engine)
-            DBStorage.__session = Session()
             delete_tables = DBStorage.__session.execute('DROP TABLE IF EXISTS cities, states')  # COmplete info
-            DBStorage.__session.close()
 
     def all(self, cls=None):
         """  """
@@ -31,8 +28,6 @@ class DBStorage:
         from models.city import City
         from models.state import State
 
-        Session = sessionmaker(bind=DBStorage.__engine)
-        DBStorage.__session = Session()
         dictionary = {}
 
         if cls is None:
@@ -43,26 +38,15 @@ class DBStorage:
         for obj in result:
             dictionary[obj.__class__.__name__ + '.' + obj.id] = obj
 
-        DBStorage.__session.close()
-
         return dictionary
 
     def new(self, obj):
         """  """
-        Session = sessionmaker(bind=DBStorage.__engine)
-        DBStorage.__session = Session()
-
         DBStorage.__session.add(obj)
-        DBStorage.__session.commit()
-        DBStorage.__session.close()
 
     def save(self):
         """  """
-        Session = sessionmaker(bind=DBStorage.__engine)
-        DBStorage.__session = Session()
-
         DBStorage.__session.commit()
-        DBStorage.__session.close()
 
     def delete(self, obj=None):
         """ """
