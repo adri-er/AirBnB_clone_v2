@@ -8,6 +8,7 @@ class test_state(test_basemodel):
     """Class to test the State class of the project"""
 
     def __init__(self, *args, **kwargs):
+        """ Inititializes an instance """
         super().__init__(*args, **kwargs)
         self.name = "State"
         self.value = State

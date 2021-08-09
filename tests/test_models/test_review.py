@@ -8,6 +8,7 @@ class test_review(test_basemodel):
     """Class to test the Review class of the project"""
 
     def __init__(self, *args, **kwargs):
+        """ Inititializes an instance """
         super().__init__(*args, **kwargs)
         self.name = "Review"
         self.value = Review

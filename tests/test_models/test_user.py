@@ -8,6 +8,7 @@ class test_User(test_basemodel):
     """Class to test the User class of the project"""
 
     def __init__(self, *args, **kwargs):
+        """ Inititializes an instance """
         super().__init__(*args, **kwargs)
         self.name = "User"
         self.value = User

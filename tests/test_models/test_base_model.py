@@ -12,6 +12,7 @@ class test_basemodel(unittest.TestCase):
     """Class to test the base_model class"""
 
     def __init__(self, *args, **kwargs):
+        """ Inititializes an instance """
         super().__init__(*args, **kwargs)
         self.name = 'BaseModel'
         self.value = BaseModel

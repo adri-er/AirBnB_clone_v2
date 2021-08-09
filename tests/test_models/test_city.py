@@ -8,6 +8,7 @@ class test_City(test_basemodel):
     """Class test_city to test the City class"""
 
     def __init__(self, *args, **kwargs):
+        """ Inititializes an instance """
         super().__init__(*args, **kwargs)
         self.name = "City"
         self.value = City

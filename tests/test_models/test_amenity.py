@@ -8,6 +8,7 @@ class test_Amenity(test_basemodel):
     """Class to test the amenity class that inherits from test_basemodel"""
 
     def __init__(self, *args, **kwargs):
+        """ Inititializes an instance """
         super().__init__(*args, **kwargs)
         self.name = "Amenity"
         self.value = Amenity
