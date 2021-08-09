@@ -4,7 +4,7 @@ from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """ A place to stay """
+    """ Class inherited from BaseModel that describes a Place """
     city_id = ""
     user_id = ""
     name = ""
