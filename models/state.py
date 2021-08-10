@@ -3,22 +3,27 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
+from models.city import City
+from models import storage
 import os
 
 
 class State(BaseModel, Base):
-    """ Class inherited from BaseModel that describes a State """
+    """ State class """
     __tablename__ = 'states'
     name = Column(String(128), nullable=False)
 
-    if os.getenv('HBNB_TYPE_STORAGE') == 'db':
-        cities = relationship('City', backref='states', cascade='all, delete-orphan')
-    else:
-        from models.engine.file_storage import FileStorage
-        cities = []
-        for key, value in FileStorage.__objects.items():
-            cls_id = key.split('.')
-            cls = cls_id[0]
-
-            if cls == 'City' and value.state_id == self.id:
-                cities.append(value)
+    cities = relationship(
+        "City",
+        backref="states",
+        cascade="all, delete, delete-orphan"
+    )
+    if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+        @property
+        def cities(self):
+            """ Getter cities """
+            list_city = []
+            for city in list(storage.all(City).values()):
+                if self.id == city.state_id:
+                    list_city.append(city)
+            return list_city

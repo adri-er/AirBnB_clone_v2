@@ -3,24 +3,25 @@
 import uuid
 from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, DateTime
 
 Base = declarative_base()
 
 
 class BaseModel:
     """A base class for all hbnb models"""
+    id = Column(String(60), primary_key=True, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow(),
+                                nullable=False)
+    updated_at = Column(DateTime, default=datetime.utcnow(),
+                                nullable=False)
+
     def __init__(self, *args, **kwargs):
-        """Instatntiates a new model"""
-        if not kwargs:
-            from models import storage
-            self.id = Column(String(60), nullable=False, primary_key=True)
-            self.created_at = Column(DateTime, default=datetime.utcnow(),
-                                     nullable=False)
-            self.updated_at = Column(DateTime, default=datetime.utcnow(),
-                                     nullable=False)
-            # storage.new(self)
-        else:
+        """Instantiates a new model"""
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        if kwargs:
             kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
                                                      '%Y-%m-%dT%H:%M:%S.%f')
             kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
@@ -55,8 +56,9 @@ class BaseModel:
 
         return dictionary
 
-        def delete(self):
-            """public instance method that delete the current instance from
-            storage by calling the delete() method
-            """
-            storage.delete(self)
+    def delete(self):
+        """public instance method that delete the current instance from
+        storage by calling the delete() method
+        """
+        from models import storage
+        storage.delete(self)
