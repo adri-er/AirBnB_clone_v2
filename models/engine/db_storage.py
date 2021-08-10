@@ -33,13 +33,13 @@ class DBStorage:
         from models.user import User
         from models.place import Place
         from models.review import Review
-        # AGREGAR clase
+        from models.amenity import Amenity
 
         dictionary = {}
 
         if cls is None:
             result = self.__session.query(
-                State, City, User, Place, Review).all()  # Complete classes
+                State, City, User, Place, Review, Amenity).all()  # Complete classes
         # AGREGAR clase
         else:
             result = self.__session.query(cls).all()
@@ -71,7 +71,7 @@ class DBStorage:
         from models.user import User
         from models.place import Place
         from models.review import Review
-        # AGREGAR clase
+        from models.amenity import Amenity
 
         Base.metadata.create_all(self.__engine)
         Session = scoped_session(sessionmaker(bind=self.__engine,
