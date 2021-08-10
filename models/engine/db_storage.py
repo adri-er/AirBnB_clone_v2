@@ -23,7 +23,7 @@ class DBStorage:
 
         if getenv('HBNB_ENV') == 'test':
             delete_tables = self.__session.execute(
-                'DROP TABLE IF EXISTS cities, states')  # COmplete info
+                'DROP TABLE IF EXISTS cities, states, places, reviews, amenities, users')  # COmplete info
 
     def all(self, cls=None):
         """ Prints all the instances specified, or not """
