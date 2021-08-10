@@ -15,12 +15,15 @@ class DBStorage:
     def __init__(self):
         """Initialize an instance"""
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}:3306/{}'
-                                      .format(getenv('HBNB_MYSQL_USER'), getenv('HBNB_MYSQL_PWD'),
-                                              getenv('HBNB_MYSQL_HOST'), getenv('HBNB_MYSQL_DB')),
+                                      .format(getenv('HBNB_MYSQL_USER'),
+                                              getenv('HBNB_MYSQL_PWD'),
+                                              getenv('HBNB_MYSQL_HOST'),
+                                              getenv('HBNB_MYSQL_DB')),
                                       pool_pre_ping=True)
 
         if getenv('HBNB_ENV') == 'test':
-            delete_tables = self.__session.execute('DROP TABLE IF EXISTS cities, states')  # COmplete info
+            delete_tables = self.__session.execute(
+                'DROP TABLE IF EXISTS cities, states')  # COmplete info
 
     def all(self, cls=None):
         """ Prints all the instances specified, or not """
@@ -29,12 +32,14 @@ class DBStorage:
         from models.state import State
         from models.user import User
         from models.place import Place
+        from models.review import Review
         # AGREGAR clase
 
         dictionary = {}
 
         if cls is None:
-            result = self.__session.query(State, City, User, Place).all()  # Complete classes
+            result = self.__session.query(
+                State, City, User, Place, Review).all()  # Complete classes
         # AGREGAR clase
         else:
             result = self.__session.query(cls).all()
@@ -65,6 +70,7 @@ class DBStorage:
         from models.state import State
         from models.user import User
         from models.place import Place
+        from models.review import Review
         # AGREGAR clase
 
         Base.metadata.create_all(self.__engine)
