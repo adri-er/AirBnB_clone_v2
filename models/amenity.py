@@ -10,4 +10,4 @@ class Amenity(BaseModel, Base):
     """ Class inherited from BaseModel that describes an Amenity """
     __tablename__ = 'amenities'
     name = Column(String(128), nullable=False)
-    place_amenity = relationship("Place", secondary=place_amenity)
+    place_amenities = relationship("Place", secondary=place_amenity)
