@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Module to store instances on the MySQL database
+Module to store instances on the MySQL database.
 """
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
@@ -8,7 +8,7 @@ from os import environ, getenv
 
 
 class DBStorage:
-    """Class"""
+    """Class that represents SQL storage"""
     __engine = None
     __session = None
 
@@ -23,17 +23,18 @@ class DBStorage:
             delete_tables = self.__session.execute('DROP TABLE IF EXISTS cities, states')  # COmplete info
 
     def all(self, cls=None):
-        """  """
+        """ Prints all the instances specified, or not """
         from models.base_model import BaseModel
         from models.city import City
         from models.state import State
         from models.user import User
+        from models.place import Place
         # AGREGAR clase
 
         dictionary = {}
 
         if cls is None:
-            result = self.__session.query(State, City, User).all()  # Complete classes
+            result = self.__session.query(State, City, User, Place).all()  # Complete classes
         # AGREGAR clase
         else:
             result = self.__session.query(cls).all()
@@ -44,24 +45,25 @@ class DBStorage:
         return dictionary
 
     def new(self, obj):
-        """  """
+        """ Adds an instance to the program """
         self.__session.add(obj)
 
     def save(self):
-        """  """
+        """ Adds the instance to the SQL database """
         self.__session.commit()
 
     def delete(self, obj=None):
-        """ """
+        """ Removes and instance from the database """
         if obj is not None:
             self.__session.delete(obj)
 
     def reload(self):
-        """  """
+        """ Reloads data from the database """
         from models.base_model import BaseModel, Base
         from models.city import City
         from models.state import State
         from models.user import User
+        from models.place import Place
         # AGREGAR clase
 
         Base.metadata.create_all(self.__engine)
