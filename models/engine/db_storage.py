@@ -56,6 +56,7 @@ class DBStorage:
         """ Removes and instance from the database """
         if obj is not None:
             self.__session.delete(obj)
+        self.save()
 
     def reload(self):
         """ Reloads data from the database """
