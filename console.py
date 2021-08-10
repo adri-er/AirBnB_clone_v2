@@ -118,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
         """ Create an object of any class"""
         class_name = HBNBCommand.convert_str_dict(args)[0]
         kwargs = HBNBCommand.convert_str_dict(args)[1]
-        print(class_name, kwargs)
+
         if not args:
             print("** class name missing **")
             return
