@@ -27,11 +27,14 @@ class DBStorage:
         from models.base_model import BaseModel
         from models.city import City
         from models.state import State
+        from models.user import User
+        # AGREGAR clase
 
         dictionary = {}
 
         if cls is None:
-            result = self.__session.query(State, City).all()  # Complete classes
+            result = self.__session.query(State, City, User).all()  # Complete classes
+        # AGREGAR clase
         else:
             result = self.__session.query(cls).all()
 
@@ -58,6 +61,8 @@ class DBStorage:
         from models.base_model import BaseModel, Base
         from models.city import City
         from models.state import State
+        from models.user import User
+        # AGREGAR clase
 
         Base.metadata.create_all(self.__engine)
         Session = scoped_session(sessionmaker(bind=self.__engine,
