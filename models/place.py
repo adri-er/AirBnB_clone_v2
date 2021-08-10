@@ -1,19 +1,17 @@
 #!/usr/bin/python3
 """ Place Module for HBNB project """
-from models import amenity
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey, Integer, Float, Table
 from sqlalchemy.orm import relationship
 from models import storage
 from models.review import Review
-from models.amenity import Amenity
 import os
 
 place_amenity = Table("place_amenity", Base.metadata,
                       Column('place_id', String(60),
-                             ForeignKey('places.id'), PrimaryKey=True),
+                             ForeignKey('places.id')),
                       Column('amenity_id', String(60),
-                             ForeignKey('amenities.id'), PrimaryKey=True))
+                             ForeignKey('amenities.id')))
 
 
 class Place(BaseModel, Base):
@@ -55,6 +53,7 @@ class Place(BaseModel, Base):
         @property
         def amenities(self):
             """ Getter amenities """
+            from models.amenity import Amenity
             list_amenities = []
             dict_amenities = storage.all(Amenity)
 
