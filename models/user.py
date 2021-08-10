@@ -13,5 +13,5 @@ class User(BaseModel, Base):
     first_name = Column(String(128), nullable=False)
     last_name = Column(String(128), nullable=False)
 
-    places = relationship('Place', back_populates="user",
+    places = relationship('Place', back_populates="user", single_parent=True,
                           cascade="all, delete, delete-orphan")
