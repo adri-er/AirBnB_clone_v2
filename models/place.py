@@ -6,7 +6,6 @@ from sqlalchemy import Column, String, ForeignKey, Integer, Float, Table
 from sqlalchemy.orm import relationship
 from models import storage
 from models.review import Review
-from models.amenity import Amenity
 import os
 
 place_amenity = Table("place_amenity", Base.metadata,
@@ -41,31 +40,32 @@ class Place(BaseModel, Base):
 
     amenities = relationship("Amenity", secondary=place_amenity, viewonly=False)
 
-    if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+    # if os.getenv('HBNB_TYPE_STORAGE') != 'db':
 
-        @property
-        def reviews(self):
-            """ Getter reviews """
-            list_reviews = []
-            for review in list(storage.all(Review).values()):
-                if self.id == review.place_id:
-                    list_reviews.append(review)
-            return list_reviews
+    #     @property
+    #     def reviews(self):
+    #         """ Getter reviews """
+    #         list_reviews = []
+    #         for review in list(storage.all(Review).values()):
+    #             if self.id == review.place_id:
+    #                 list_reviews.append(review)
+    #         return list_reviews
 
-        @property
-        def amenities(self):
-            """ Getter amenities """
-            list_amenities = []
-            dict_amenities = storage.all(Amenity)
+    #     @property
+    #     def amenities(self):
+    #         """ Getter amenities """
+    #         from models.amenity import Amenity
+    #         list_amenities = []
+    #         dict_amenities = storage.all(Amenity)
 
-            for id_amenity in self.amenity_ids:
-                key = "Amenity. " + id_amenity
-                if key in dict_amenities.keys():
-                    list_amenities.append(dict_amenities[key])
-            return list_amenities
+    #         for id_amenity in self.amenity_ids:
+    #             key = "Amenity. " + id_amenity
+    #             if key in dict_amenities.keys():
+    #                 list_amenities.append(dict_amenities[key])
+    #         return list_amenities
 
-        @amenities.setter
-        def amenities(self, obj=None):
-            """ Setter amenities """
-            if obj is not None and obj.__class__.__name__ == 'Amenity':
-                self.amenity_ids.append(obj.id)
+    #     @amenities.setter
+    #     def amenities(self, obj=None):
+    #         """ Setter amenities """
+    #         if obj is not None and obj.__class__.__name__ == 'Amenity':
+    #             self.amenity_ids.append(obj.id)
