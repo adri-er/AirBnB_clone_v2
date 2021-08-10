@@ -331,7 +331,7 @@ class HBNBCommand(cmd.Cmd):
         array_kwargs = array_kwargs[1::]
         converted_dict = {}
         attributes_int = ['number_rooms', 'number_bathrooms',
-                          'max_guests', 'price_by_night']
+                          'max_guest', 'price_by_night']
         attribute_float = ['latitude', 'longitude']
 
         for element in array_kwargs:
