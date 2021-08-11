@@ -17,3 +17,13 @@ class test_state(test_basemodel):
         """Method to test the name attibute of the State class"""
         new = self.value()
         self.assertEqual(type(new.name), str)
+
+    def test_create_state(self):
+        """ Method to test the creation of a state """
+        state = State()
+        self.assertTrue(isinstance(state, State))
+
+    def test_create_state(self):
+        """ Method to test the creation of a state """
+        state_2 = State('name="California"')
+        self.assertEqual(state_2.name, 'California')
