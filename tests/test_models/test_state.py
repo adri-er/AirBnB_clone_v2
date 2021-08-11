@@ -20,5 +20,8 @@ class test_state(test_basemodel):
 
     def test_create(self):
         """  """
+        new_state_two = State()
+        self.assertEqual(new_state_two.name, '')
+
         new_state = State(name='California')
         self.assertEqual(new_state.name, 'California')
