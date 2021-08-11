@@ -22,8 +22,8 @@ class DBStorage:
                                       pool_pre_ping=True)
 
         if getenv('HBNB_ENV') == 'test':
-            delete_tables = self.__session.execute(
-                'DROP TABLE IF EXISTS cities, states, places, reviews, amenities, users')  # COmplete info
+            from models.base_model import Base
+            Base.metadata.drop_all()
 
     def all(self, cls=None):
         """ Prints all the instances specified, or not """
@@ -39,7 +39,7 @@ class DBStorage:
 
         if cls is None:
             result = self.__session.query(
-                State, City, User, Place, Review, Amenity).all()  # Complete classes
+                State, City, User, Place, Review, Amenity).all()
         # AGREGAR clase
         else:
             result = self.__session.query(cls).all()
