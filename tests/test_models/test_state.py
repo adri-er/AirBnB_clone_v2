@@ -14,6 +14,11 @@ class test_state(test_basemodel):
         self.value = State
 
     def test_name3(self):
-        """Method to test the name attibute of the State class"""
+        """Method to test the name attribute of the State class"""
         new = self.value()
         self.assertEqual(type(new.name), str)
+
+    def test_create(self):
+        """  """
+        new_state = State(name='California')
+        self.assertEqual(new_state.name, 'California')
