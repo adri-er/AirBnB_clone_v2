@@ -37,7 +37,8 @@ class Place(BaseModel, Base):
                            single_parent=True,
                            cascade="all, delete, delete-orphan")
 
-    amenities = relationship("Amenity", secondary=place_amenity, viewonly=False)
+    amenities = relationship("Amenity", secondary=place_amenity,
+                             viewonly=False)
 
     # if os.getenv('HBNB_TYPE_STORAGE') != 'db':
 
