@@ -3,6 +3,8 @@
 Unistest to tste the command line console to manage the web site
 """
 import unittest
+
+from sqlalchemy.sql.expression import select
 from models.base_model import BaseModel
 import os
 import sys
@@ -22,6 +24,7 @@ class TestHBNBCommand(unittest.TestCase):
     """
     this class test HBNBCommand class and its behavior
     """
+
     def setUp(self) -> None:
         """Test module to test the console and its functionality"""
         return super().setUp()
@@ -83,3 +86,36 @@ class TestHBNBCommand(unittest.TestCase):
         with open("file.json", 'r') as f:
             temp = json.load(f)
         self.assertTrue(temp)
+
+    def test_ac_create(self):
+        """ create tests """
+        no_stdout = " > /dev/null 2>&1"
+        run("rm file.json " + no_stdout)
+        command = 'echo create City state_id="1" name="San_Francisco" '
+        command = command + '| ./console.py '
+        run(command + no_stdout)
+        run("echo 'all' | ./console.py" + no_stdout)
+        with open("file.json", 'r') as f:
+            temp = json.load(f)
+        self.assertTrue(temp)
+
+    def test_ac_create(self):
+        """ create tests """
+        no_stdout = " > /dev/null 2>&1"
+        command = 'echo "create State name="California""'
+        sp_1 = " HBNB_MYSQL_USER=hbnb_test HBNB_MYSQL_PWD=hbnb_test_pwd "
+        sp_2 = "HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_test_db "
+        sp_3 = "HBNB_TYPE_STORAGE=db HBNB_ENV=test "
+        command = command + '|{}{}{}./console.py '.format(sp_1, sp_2, sp_3)
+        run(command + no_stdout)
+
+        command = 'echo "SELECT COUNT(*) FROM states"'
+        sp_1 = " HBNB_MYSQL_USER=hbnb_test HBNB_MYSQL_PWD=hbnb_test_pwd "
+        sp_2 = "HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_test_db "
+        sp_3 = "HBNB_TYPE_STORAGE=db HBNB_ENV=test "
+        command = command + '|{}{}{}./console.py '.format(sp_1, sp_2, sp_3)
+        std_out = StringIO()
+        sys.stdout = std_out
+        run(command + no_stdout)
+        output = std_out.getvalue()
+        self.assertEqual(output, 1)
