@@ -170,3 +170,19 @@ The first part of this project (HBNB the console) was forked from [justinmajetic
 <br>
 <br>
 <center> <h2>General Use</h2> </center>
+
+Once you clone the repository and got familiar with the project and its functionality:
+
+- Create the databases ans prepare the MySQL server for the project.  
+Run these commands on your terminal to create the database, the user and the password and to test the correct functionality: 
+
+```
+AirBnB_v2$ cat setup_mysql_dev.sql | mysql -hlocalhost -uroot -p
+Enter password:
+AirBnB_v2$ echo "SHOW DATABASES;" | mysql -uhbnb_dev -p | grep hbnb_dev_db
+Enter password:
+hbnb_dev_db
+```
+
+ - Create the databases ans prepare the MySQL server for the project.
+Run these commands on your terminal to create the database, the user and the password and to test the correct functionality:
