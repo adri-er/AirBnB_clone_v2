@@ -202,7 +202,16 @@ hbnb_test_db
 
 **State creation:**
  ```
-
+AirBnB_v2$ echo 'create State name="California"' | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py 
+(hbnb) 95a5abab-aa65-4861-9bc6-1da4a36069aa
+(hbnb)
+AirBnB_v2$ echo 'SELECT * FROM states\G' | mysql -uhbnb_dev -p hbnb_dev_db
+Enter password: 
+*************************** 1. row ***************************
+        id: 95a5abab-aa65-4861-9bc6-1da4a36069aa
+created_at: 2017-11-10 00:49:54
+updated_at: 2017-11-10 00:49:54
+      name: California
  ```
 
 **City creation:**
