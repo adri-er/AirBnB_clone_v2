@@ -289,5 +289,5 @@ For this second part of the poject, the team work was:
 
 | Name | GitHub username |
 | ------ | ------ |
-| Carolina Capote | [Carolinacapote](https://github.com/Carolinacapote) |
-| Adriana Echeverri | [adri-er](https://github.com/adri-er) |
+| Carolina Capote :mage_woman: | [Carolinacapote](https://github.com/Carolinacapote) |
+| Adriana Echeverri :woman_technologist: | [adri-er](https://github.com/adri-er) |
