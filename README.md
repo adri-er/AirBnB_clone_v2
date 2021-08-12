@@ -256,5 +256,13 @@ AirBnB_v2$ echo 'all Place' | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_p
 AirBnB_v2$ echo 'create Review place_id="ed72aa02-3286-4891-acbc-9d9fc80a1103" user_id="d93638d9-8233-4124-8f4e-17786592908b" text="Amazing_place,_huge_kitchen"' | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py 
 (hbnb) a2d163d3-1982-48ab-a06b-9dc71e68a791
 (hbnb) 
-
+AirBnB_v2$ echo 'SELECT * FROM reviews\G' | mysql -uhbnb_dev -p hbnb_dev_db
+Enter password: 
+*************************** 1. row ***************************
+        id: f2616ff2-f723-4d67-85dc-f050a38e0f2f
+created_at: 2017-11-10 04:06:25
+updated_at: 2017-11-10 04:06:25
+      text: Amazing place, huge kitchen
+  place_id: ed72aa02-3286-4891-acbc-9d9fc80a1103
+   user_id: d93638d9-8233-4124-8f4e-17786592908b
  ```
