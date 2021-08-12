@@ -287,3 +287,7 @@ updated_at: 2017-11-10 04:22:02
 
 For this second part of the poject, the team work was:
 
+| Name | GitHub username |
+| ------ | ------ |
+| Carolina Capote | [Carolinacapote](https://github.com/Carolinacapote) |
+| Adriana Echeverri | [adri-er](https://github.com/adri-er) |
