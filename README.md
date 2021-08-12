@@ -193,3 +193,13 @@ echo "SHOW DATABASES;" | mysql -uhbnb_test -p | grep hbnb_test_db
 Enter password:
 hbnb_test_db
  ```
+
+<br>
+<br>
+<center> <h2>Examples</h2> </center>
+
+**Usage:** echo '<command> <attribute1> <attribute2>' | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py
+
+ ```
+
+ ```
