@@ -160,7 +160,13 @@ The first part of this project (HBNB the console) was forked from [justinmajetic
 | 5. Change the storage engine and use SQLAlchemy | [db_storage.py](https://github.com/adri-er/AirBnB_clone_v2/blob/master/models/engine/db_storage.py) | New engine linked to the MySQL database and user created before, sessionmaker to manipulte the database, creation of new public instance methos to manage the database (__init__(self): / all(self, cls=None): / new(self, obj): / save(self): / delete(self, obj=None): / reload(self): ) |
 | 6. Update __init__.py | [models/__init__.py](https://github.com/adri-er/AirBnB_clone_v2/blob/master/models/__init__.py) | Add a conditional depending of the value of the environment variable HBNB_TYPE_STORAGE |
 | 7. Update BaseModel | [models/base_model.py](https://github.com/adri-er/AirBnB_clone_v2/blob/master/models/base_model.py) | Create Base = declarative_base(), Update attributes to work with MySQL storage|
-| 8. Update City | [models/city.py](https://github.com/adri-er/AirBnB_clone_v2/blob/master/models/city.py) |  Update attributes to work with MySQL storage |
+| 8. Update class City | [models/city.py](https://github.com/adri-er/AirBnB_clone_v2/blob/master/models/city.py) |  Update attributes to work with MySQL storage |
+| 9. Update class State | [models/state.py](https://github.com/adri-er/AirBnB_clone_v2/blob/master/models/state.py) |  Update attributes to work with MySQL storage |
+| 10. Update class User | [models/user.py](https://github.com/adri-er/AirBnB_clone_v2/blob/master/models/user.py) |  Update attributes to work with MySQL storage |
+| 11. Update class Place | [models/place.py](https://github.com/adri-er/AirBnB_clone_v2/blob/master/models/place.py) |  Update attributes to work with MySQL storage |
+| 10. Update class Review | [models/review.py](https://github.com/adri-er/AirBnB_clone_v2/blob/master/models/review.py) |  Update attributes to work with MySQL storage |
+| 10. Update class Amenity | [models/amenity.py](https://github.com/adri-er/AirBnB_clone_v2/blob/master/models/amenity.py) |  Update attributes to work with MySQL storage / Create the relationship Many-To-Many between Place and Amenity|
+
 <br>
 <br>
 <center> <h2>General Use</h2> </center>
