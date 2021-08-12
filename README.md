@@ -196,7 +196,7 @@ hbnb_test_db
 
 <br>
 <br>
-<center> <h2>Examples</h2> </center>
+<center> <h3>Examples</h3> </center>
 
 **Usage:** echo 'command attribute1=0 attribute2="value"' | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py
 
@@ -272,7 +272,7 @@ updated_at: 2017-11-10 04:06:25
  AirBnB_v2$ echo 'create Amenity name="wifi"' | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py
 (hbnb) 47321eb8-152a-46df-969a-440aa67a6d59
 (hbnb)
-echo 'SELECT * FROM amenities\G' | mysql -uhbnb_dev -p hbnb_dev_db
+AirBnB_v2$ echo 'SELECT * FROM amenities\G' | mysql -uhbnb_dev -p hbnb_dev_db
 Enter password: 
 *************************** 1. row ***************************
 id: 47321eb8-152a-46df-969a-440aa67a6d59
@@ -280,3 +280,10 @@ created_at: 2017-11-10 04:22:02
 updated_at: 2017-11-10 04:22:02
       name: wifi
 ```
+<br>
+<br>
+
+<center><h2>Authors</h2> </center>
+
+For this second part of the poject, the team work was:
+
