@@ -240,3 +240,8 @@ updated_at: 2017-11-10 01:17:26
 first_name: Guillaume
  last_name: Snow
   ```
+
+**Place creation:**
+```
+
+```
