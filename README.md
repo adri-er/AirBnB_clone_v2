@@ -164,8 +164,8 @@ The first part of this project (HBNB the console) was forked from [justinmajetic
 | 9. Update class State | [models/state.py](https://github.com/adri-er/AirBnB_clone_v2/blob/master/models/state.py) |  Update attributes to work with MySQL storage |
 | 10. Update class User | [models/user.py](https://github.com/adri-er/AirBnB_clone_v2/blob/master/models/user.py) |  Update attributes to work with MySQL storage |
 | 11. Update class Place | [models/place.py](https://github.com/adri-er/AirBnB_clone_v2/blob/master/models/place.py) |  Update attributes to work with MySQL storage |
-| 10. Update class Review | [models/review.py](https://github.com/adri-er/AirBnB_clone_v2/blob/master/models/review.py) |  Update attributes to work with MySQL storage |
-| 10. Update class Amenity | [models/amenity.py](https://github.com/adri-er/AirBnB_clone_v2/blob/master/models/amenity.py) |  Update attributes to work with MySQL storage / Create the relationship Many-To-Many between Place and Amenity|
+| 12. Update class Review | [models/review.py](https://github.com/adri-er/AirBnB_clone_v2/blob/master/models/review.py) |  Update attributes to work with MySQL storage |
+| 13. Update class Amenity | [models/amenity.py](https://github.com/adri-er/AirBnB_clone_v2/blob/master/models/amenity.py) |  Update attributes to work with MySQL storage / Create the relationship Many-To-Many between Place and Amenity|
 
 <br>
 <br>
@@ -198,7 +198,7 @@ hbnb_test_db
 <br>
 <center> <h2>Examples</h2> </center>
 
-**Usage:** echo '<command> <attribute1> <attribute2>' | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py
+**Usage:** echo 'command attribute1=0 attribute2="value"' | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py
 
 **State creation:**
  ```
@@ -223,3 +223,10 @@ AirBnB_v2$ echo 'all City' | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pw
 (hbnb) [[City] (4b457e66-c7c8-4f63-910f-fd91c3b7140b) {'id': '4b457e66-c7c8-4f63-910f-fd91c3b7140b', 'updated_at': datetime.datetime(2017, 11, 10, 0, 52, 53), 'state_id': '95a5abab-aa65-4861-9bc6-1da4a36069aa', 'name': 'San Francisco', 'created_at': datetime.datetime(2017, 11, 10, 0, 52, 53)]
 (hbnb)
  ```
+
+**User creation:**
+  ```
+AirBnB_v2$ echo 'create User email="gui@hbtn.io" password="guipwd" first_name="Guillaume" last_name="Snow"' | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py 
+(hbnb) 4f3f4b42-a4c3-4c20-a492-efff10d00c0b
+(hbnb)
+  ```
