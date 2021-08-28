@@ -41,5 +41,12 @@ def do_deploy(archive_path):
     return True
 
 
-file = do_pack()
-do_deploy(file)
+def deploy():
+    """ Deploy content using previous functions """
+    file = do_pack()
+    if file is None:
+        return False
+    else:
+        print(file)
+        do_deploy(file)
+    return True
