@@ -80,4 +80,4 @@ class DBStorage:
 
     def close(self):
         """ Closes session of mysql """
-        self.__session.remove()
+        self.__session.close()
