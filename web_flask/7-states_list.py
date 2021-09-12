@@ -12,8 +12,9 @@ def list_states():
     ''' Display HTML page with states '''
     from models.state import State
     list_states = list(storage.all(State).values())
-    list_ordered = sorted(list_states, key = lambda i: (i['name']))
+    list_ordered = sorted(list_states, key=lambda i: (i['name']))
     return render_template('7-states_list.html', list_states=list_ordered)
+
 
 @app.teardown_appcontext
 def teardown_x():
