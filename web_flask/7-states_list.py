@@ -11,9 +11,8 @@ app = Flask(__name__)
 def list_states():
     ''' Display HTML page with states '''
     from models.state import State
-    list_states_values = list(storage.all(State).values())
-    list_ordered = sorted(list_states_values, key=lambda i: (i['name']))
-    return render_template('7-states_list.html', list_states=list_ordered)
+    list_states_val = list(storage.all(State).values())
+    return render_template('7-states_list.html', list_states=list_states_val)
 
 
 @app.teardown_appcontext
