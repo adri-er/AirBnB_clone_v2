@@ -16,7 +16,7 @@ def list_states():
 
 
 @app.teardown_appcontext
-def teardown_x():
+def teardown_x(self):
     ''' Closes session when request ends '''
     storage.close()
 
