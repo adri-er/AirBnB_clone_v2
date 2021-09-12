@@ -13,11 +13,11 @@ def list_states_cities():
     from models.state import State
     from models.city import City
     if os.getenv('HBNB_TYPE_STORAGE') != 'db':
-        State.cities()
+        return render_template('8-cities_by_states.html', ls_cities=State.cities())
     else:
         list_state = list(storage.all(State).values())
         list_cities = list(storage.all(City).values())
-    return render_template(
+        return render_template(
         '8-cities_by_states.html',
         ls_states=list_state,
         ls_cities=list_cities)
