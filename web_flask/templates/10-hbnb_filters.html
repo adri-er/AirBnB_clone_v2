@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<HTML>
+
+<HEAD>
+    <TITLE>AirBnB clone</TITLE>
+    <LINK rel="stylesheet" href="static/4-common.css">
+    <LINK rel="stylesheet" href="static/3-footer.css">
+    <LINK rel="stylesheet" href="static/3-header.css">
+    <LINK rel="stylesheet" href="static/6-filters.css">
+    <LINK rel="icon" href="static/images/icon.png">
+</HEAD>
+
+<BODY>
+    <HEADER>
+        <DIV class="logo" style="background-image: url('static/images/logo.png'); background-repeat: no-repeat;">
+        </DIV>
+    </HEADER>
+    <DIV class="container">
+
+        <SECTION class="filters">
+
+            <DIV class="location_panel">
+                <DIV class="locations">
+                    <H3> States </H3>
+                    <H4> &nbsp; </H4>
+                </DIV>
+                <DIV class="dropdown_states">
+                    <UL class="popover">
+                        {% for state in ls_states|sort(attribute="name") %}
+                        <LI><H2>{{ state.name }}</H2></LI>
+                        <LI></LI>
+                            <UL>
+                                {% for city in ls_cities|sort(attribute="name") %}
+                                {% if city.state_id == state.id %}
+                                <LI>{{ city.name }}</LI>
+                                {% endif %}
+                                {% endfor %}
+                            </UL>
+                        </LI>
+                        {% endfor %}
+                    </UL>
+                </DIV>
+            </DIV>
+
+            <DIV class="amenities_panel">
+                <DIV class="amenities_search">
+                    <H3> Amenities </H3>
+                    <H4> &nbsp; </H4>
+                </DIV>
+                <DIV class="dropdown_amenities">
+                    <UL class="popover">
+                        <UL>
+                            {% for amenity in ls_amenities %}
+                            <LI> {{ amenity.name }} </LI>
+                            {% endfor %}
+                        </UL>
+                    </UL>
+                </DIV>
+            </DIV>
+
+            <BUTTON>
+                Search
+            </BUTTON>
+
+        </SECTION>
+    </DIV>
+
+    <FOOTER>
+        <P> Holberton School </P>
+    </FOOTER>
+</BODY>
+
+</HTML>
