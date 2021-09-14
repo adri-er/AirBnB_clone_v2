@@ -75,7 +75,7 @@ button:hover {
     position: relative;
     z-index: 99;
     overflow: auto;
-    scrollbar-width: thin;
+    scrollbar-width: none;
 }
 
 .location_panel:hover .dropdown_states{
@@ -83,7 +83,7 @@ button:hover {
     position: relative;
     z-index: 99;
     overflow: auto;
-    scrollbar-width: thin;
+    scrollbar-width: none;
 }
 
 ul {
